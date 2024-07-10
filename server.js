@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const path = require('path')
-const port = 4110
+const port = portfolio-mri.netlify.app
 
 const app = express();
 app.use(express.static(__dirname));
