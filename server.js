@@ -1,13 +1,14 @@
-const express = require('express')
+const express = require('express');
+const { Http2ServerResponse } = require('https://portfolio-mri.netlify.app/');
 const mongoose = require('mongoose')
 const path = require('path')
-const port = portfolio-mri.netlify.app
+const port = Http2ServerResponse
 
 const app = express();
 app.use(express.static(__dirname));
 app.use(express.urlencoded({ extended: true }))
 
-mongoose.connect('mongodb://localhost:27017/portfolio')
+mongoose.connect('mongodb+srv://mridhul:cluster-mri@cluster0.aioeulj.mongodb.net/portfolio')
 const db = mongoose.connection
 db.once('open', () => {
     console.log("Mongodb connection successful")
