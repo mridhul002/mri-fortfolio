@@ -1,14 +1,22 @@
-const express = require('express');
-const { Http2ServerResponse } = require('https://portfolio-mri.netlify.app/');
+const express = require('express')
 const mongoose = require('mongoose')
 const path = require('path')
-const port = Http2ServerResponse
+const dotenv = require('dotenv');
+
+dotenv.config();
+const port = process.env.PORT
 
 const app = express();
 app.use(express.static(__dirname));
 app.use(express.urlencoded({ extended: true }))
 
-mongoose.connect('mongodb+srv://mridhul:cluster-mri@cluster0.aioeulj.mongodb.net/portfolio')
+const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio'; // Use the environment variable for MongoDB URI
+
+mongoose.connect(dbURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
 const db = mongoose.connection
 db.once('open', () => {
     console.log("Mongodb connection successful")
